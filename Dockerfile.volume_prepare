@@ -1,0 +1,7 @@
+FROM busybox:latest
+ARG sourcedir=.
+COPY ${sourcedir}/deploy_src /deploy_src/
+VOLUME /data/
+CMD ["cp", "-r", "/deploy_src/source", "/deploy_src/robots.txt", "/data/"] 
+
+# notice: deploy_src/.ssh don't have to update manually everytime

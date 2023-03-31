@@ -1,0 +1,6 @@
+user-agent:*
+Disallow:/img/
+Disallow:/gallery/
+Disallow:/link/
+Disallow:/p/
+Disallow:/sc/

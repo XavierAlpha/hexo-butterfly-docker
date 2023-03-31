@@ -1,0 +1,14 @@
+#top:
+#  - class_name:
+#    id_name:
+#    name:
+#    icon:
+#    html:
+
+bottom:
+  - class_name: card-category-list
+    id_name: aside-cat-list
+    name: Headlines
+    icon: fas fa-book
+    order: -1
+    html: '<ul class="card-category-list" id="aside-cat-list"><li class="card-category-list-item"><a class="card-category-list-link" href="/headlines/Source Files/" data-pjax-state=""><span class="card-category-list-name">Source File</span><span class="card-category-list-count"> </span></a></li></ul>'

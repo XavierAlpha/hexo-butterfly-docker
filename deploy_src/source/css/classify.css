@@ -1,0 +1,93 @@
+ul.card-category-list>.card-category-list-item a span {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+ul.card-category-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul.card-category-list>.card-category-list-item a {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -o-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding: 3px 10px;
+    color: var(--font-color);
+    -webkit-transition: all .4s;
+    -moz-transition: all .4s;
+    -o-transition: all .4s;
+    -ms-transition: all .4s;
+    transition: all .4s
+}
+
+ul.card-category-list>.card-category-list-item a:hover {
+    padding: 3px 17px;
+    background-color: var(--text-bg-hover)
+}
+
+ ul.card-category-list>.card-category-list-item a span:first-child {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -o-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1
+}
+
+.card-category-list.child {
+    padding: 0 0 0 16px
+}
+
+.card-category-list>.parent>a .card-category-list-name {
+    width: 70%!important
+}
+
+.card-category-list>.parent>a .card-category-list-count {
+    width: calc(100% - 70% - 20px);
+    text-align: right
+}
+
+.card-category-list>.parent i {
+    float: right;
+    margin-right: -.5em;
+    padding: .5em;
+    -webkit-transition: -webkit-transform .3s;
+    -moz-transition: -moz-transform .3s;
+    -o-transition: -o-transform .3s;
+    -ms-transition: -ms-transform .3s;
+    transition: transform .3s;
+    -webkit-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -o-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0)
+}
+
+.card-category-list>.parent i.expand {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg)
+}
+
+.card-category-list>.parent>.child {
+    display: none
+}
+
+
+
