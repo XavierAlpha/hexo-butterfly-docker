@@ -27,7 +27,6 @@ COPY ${sourcedir}/${build_dir}/_config*.yml .
 
 FROM base as butterfly
 WORKDIR /root
-# Copy id_rsa.pub to remote server
 RUN apt-get update && apt-get install -y --no-install-recommends ssh \
     && rm -rf /var/cache/apt/* \
     && rm -rf /var/lib/apt/lists/*
