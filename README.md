@@ -52,8 +52,10 @@ $ ./start.sh # deploy to remote server.
 Generally, you don't have to delete or rebuild the butterfly images if nothing changes in build_src, when new post created with its resource, moving them to deploy_src/source's different positions, then running ./start.sh, new post will be deployed to remote server, and all containers generated when deploying will be clear,next time new post comes, repeat this command is enough.
 
 e.g in ubuntu 22.04.2 LTS, run docker images, you will see images:
+```
 REPOSITORY  TAG        IMAGE ID        CREATED      SIZE
 busybox     latest     xxxxxxxxxxxx    xx ago       4.86MB
 node        latest     xxxxxxxxxxxx    xx ago       999MB
 xavier      butterfly  xxxxxxxxxxxx    xx ago       1.13GB
+```
 that will be used kept in the background.
