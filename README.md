@@ -14,7 +14,7 @@ all your blog resource, docker loads the newest resource into volume every time 
   - robots.txt 
 your robots.txt, hexo doesn't generate it. docker loads the newest "robots.txt" into volume every time it runs.
 
-- **ssh** Only need when docker builds. docker build loads it to your container's ".ssh" for deploying through ssh when "hexo deploy", and after deploying, files like "known_hosts" will update when you type "yes" in the beginning of ssh connection. So it will also store the new ".ssh" to your volume if deploying success, and it does have to type "yes" next time.
+- **ssh** Only need when docker builds. docker build loads it to your container's ".ssh" for deploying through ssh when "hexo deploy", and after deploying, files like "known_hosts" will update when you type "yes" in the beginning of ssh connection. So it will also store the new ".ssh" to your volume if deploying success, and don't have to repeat typing "yes" next time.
 
 - **init.sh** docker run butterfly's ENTRYPOINT.
 
@@ -27,7 +27,7 @@ your robots.txt, hexo doesn't generate it. docker loads the newest "robots.txt" 
 Normally
 1. First, Prepare your config in "build_src",
 2. Second, Prepare your blog resource in "deploy_src" and robots.txt,
-3. Then, Copy the ssh files whose id_rsa.pub should also copy to remote server's authorized_keys.
+3. Then, Copy the ssh files whose id_rsa.pub should also copy to remote server's authorized_keys(use ssh authorized ways).
 4. Then, create your volume using docker, named "ssh". Or change the name to volume=your_volume_name in "start.sh".
 5. Finally, Run
 
@@ -44,7 +44,16 @@ $ cd /your/blog/path
 $ ./uninstall.sh # if anything in build_src changes, rebuild the image.
 $ ./build.sh
 ```
-then:
+or, if nothing changes in build_src. directly:
 ```
-$ ./start.sh # after build.sh, start to deploy to remote server.
+$ ./start.sh # deploy to remote server.
 ```
+
+Generally, you don't have to delete or rebuild the butterfly images if nothing changes in build_src, when new post created with its resource, moving them to deploy_src/source's different positions, then running ./start.sh, new post will be deployed to remote server, and all containers generated when deploying will be clear,next time new post comes, repeat this command is enough.
+
+e.g in ubuntu 22.04.2 LTS, run docker images, you will see images:
+REPOSITORY  TAG        IMAGE ID        CREATED      SIZE
+busybox     latest     xxxxxxxxxxxx    xx ago       4.86MB
+node        latest     xxxxxxxxxxxx    xx ago       999MB
+xavier      butterfly  xxxxxxxxxxxx    xx ago       1.13GB
+that will be used kept in the background.
