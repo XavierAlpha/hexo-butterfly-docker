@@ -14,7 +14,7 @@ all your blog resource, docker loads the newest resource into volume every time 
   - robots.txt 
 your robots.txt, hexo doesn't generate it. docker loads the newest "robots.txt" into volume every time it runs.
 
-- **ssh** Only need when docker builds. docker build loads it to your container's ".ssh" for deploying through ssh when "hexo deploy", and after deploying, files like "known_hosts" will update when you type "yes" in the beginning of ssh connection. So it will also store the new ".ssh" to your volume if deploying success, and don't have to repeat typing "yes" next time.
+- **ssh** Only need when docker builds. docker build loads it to your container's ".ssh" for deploying through ssh when "hexo deploy", and after deploying, "known_hosts" will be updated when you type "yes" on first connection. So it will also store the new ".ssh" to your volume if deploying success, that don't have to repeat typing "yes" next time.
 
 - **init.sh** docker run butterfly's ENTRYPOINT.
 
@@ -38,18 +38,20 @@ $ ./build.sh # to build butterfly image
 $ ./start.sh
 ```
 
-Not the first time, then you may:
+Not the first time:
+
+(if anything in build_src changes, rebuild the image otherwise skipping to the next.)
 ```
 $ cd /your/blog/path
-$ ./uninstall.sh # if anything in build_src changes, rebuild the image.
-$ ./build.sh
+$ ./uninstall.sh # clear the old butterfly image
+$ ./build.sh # rebuild the new butterfly image
 ```
-or, if nothing changes in build_src. directly:
+next,
 ```
 $ ./start.sh # deploy to remote server.
 ```
 
-Generally, you don't have to delete or rebuild the butterfly images if nothing changes in build_src, when new post created with its resource, moving them to deploy_src/source's different positions, then running ./start.sh, new post will be deployed to remote server, and all containers generated when deploying will be clear,next time new post comes, repeat this command is enough.
+Generally, you don't have to delete or rebuild the butterfly images if nothing changes in build_src, when new post created with its resource, moving them to deploy_src/source's different positions, then running ./start.sh, new post will be deployed to remote server, and all containers generated when deploying will be clear,but the image remains (cause it doesn't change frequently).Next time new post coming, repeat ./start.sh is enough.
 
 e.g in ubuntu 22.04.2 LTS, run docker images, you will see images:
 ```
